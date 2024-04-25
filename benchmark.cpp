@@ -7,16 +7,16 @@
 // set problem sizes in the code below
 
 #include <algorithm>
-#include <chrono>
+#include <chrono> // Add chrono library
 #include <iomanip>
 #include <iostream>
 #include <random>
 #include <vector>
 
 #include <cmath> // For: fabs
+#include <cstring> // Add for memcpy
 
 #include <cblas.h>
-#include <string.h>
 
 // external definitions for mmul's
 extern void my_dgemv(int, double*, double*, double *);
@@ -36,6 +36,8 @@ void fill(double* p, int n) {
     for (int i = 0; i < n; ++i)
         p[i] = 2 * dis(gen) - 1;
 }
+
+
 
 bool check_accuracy(double *A, double *Anot, int nvalues)
 {
@@ -59,7 +61,7 @@ int main(int argc, char** argv)
 
     // we purposefully run the smallest problem twice so as to "condition"
     // BLAS. For timing purposes, ignore the timing of the first problem size
-    std::vector<int> test_sizes{1024, 1024, 2048, 4096, 8192, 16384};
+    std::vector<int> test_sizes{512, 1024, 2048, 4096, 8192, 16384};
 
     int n_problems = test_sizes.size();
 
@@ -77,7 +79,11 @@ int main(int argc, char** argv)
     double* Y = Xcopy + max_size;
     double* Ycopy = Y + max_size;
 
-           // load up matrics with some random numbers
+    // variables for timing
+    std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
+    std::chrono::duration<double> elapsed_seconds;
+
+    // load up matrices with some random numbers
     /* For each test size */
     for (int n : test_sizes) 
     {
@@ -92,15 +98,22 @@ int main(int argc, char** argv)
         memcpy((void *)Xcopy, (const void *)X, sizeof(double)*n);
         memcpy((void *)Ycopy, (const void *)Y, sizeof(double)*n);
 
-        // insert start timer code here
+        // start timer
+        start = std::chrono::high_resolution_clock::now();
 
         // call the method to do the work
         my_dgemv(n, A, X, Y); 
 
-        // insert end timer code here, and print out the elapsed time for this problem size
+        // end timer
+        end = std::chrono::high_resolution_clock::now();
 
+        // compute elapsed time
+        elapsed_seconds = end - start;
 
-        // now invoke the cblas method to compute the matrix-vector multiplye
+        // print out the elapsed time for this problem size
+        std::cout << "Elapsed time for problem size N=" << n << ": " << elapsed_seconds.count() << "s" << std::endl;
+
+        // now invoke the cblas method to compute the matrix-vector multiply
         reference_dgemv(n, Acopy, Xcopy, Ycopy);
 
         // compare your result with that computed by BLAS
