@@ -1,0 +1,17 @@
+/global/homes/n/niloali/vmmul-omp-harness-instructional/dgemv-vectorized.cpp:12:1: note: ***** Analysis failed with vector mode VOID
+/global/homes/n/niloali/vmmul-omp-harness-instructional/dgemv-vectorized.cpp:13:22: missed: couldn't vectorize loop
+/global/homes/n/niloali/vmmul-omp-harness-instructional/dgemv-vectorized.cpp:16:30: missed: not vectorized: complicated access pattern.
+/global/homes/n/niloali/vmmul-omp-harness-instructional/dgemv-vectorized.cpp:15:26: optimized: loop vectorized using 32 byte vectors
+/global/homes/n/niloali/vmmul-omp-harness-instructional/dgemv-vectorized.cpp:15:26: optimized: loop vectorized using 16 byte vectors
+/global/homes/n/niloali/vmmul-omp-harness-instructional/dgemv-vectorized.cpp:12:6: note: vectorized 1 loops in function.
+/global/homes/n/niloali/vmmul-omp-harness-instructional/dgemv-vectorized.cpp:18:13: note: ***** Analysis failed with vector mode V4DF
+/global/homes/n/niloali/vmmul-omp-harness-instructional/dgemv-vectorized.cpp:18:13: note: ***** The result for vector mode V32QI would be the same
+/global/homes/n/niloali/vmmul-omp-harness-instructional/dgemv-vectorized.cpp:18:13: note: ***** Re-trying analysis with vector mode V16QI
+/global/homes/n/niloali/vmmul-omp-harness-instructional/dgemv-vectorized.cpp:18:13: note: ***** Analysis failed with vector mode V16QI
+/global/homes/n/niloali/vmmul-omp-harness-instructional/dgemv-vectorized.cpp:18:13: note: ***** Re-trying analysis with vector mode V8QI
+/global/homes/n/niloali/vmmul-omp-harness-instructional/dgemv-vectorized.cpp:18:13: note: ***** Analysis failed with vector mode V8QI
+/global/homes/n/niloali/vmmul-omp-harness-instructional/dgemv-vectorized.cpp:18:13: note: ***** Re-trying analysis with vector mode V4QI
+/global/homes/n/niloali/vmmul-omp-harness-instructional/dgemv-vectorized.cpp:18:13: note: ***** Analysis failed with vector mode V4QI
+/usr/include/c++/12/iostream:74:25: missed: statement clobbers memory: std::ios_base::Init::Init (&__ioinit);
+/usr/include/c++/12/iostream:74:25: missed: statement clobbers memory: __cxxabiv1::__cxa_atexit (__dt_comp , &__ioinit, &__dso_handle);
+/global/homes/n/niloali/vmmul-omp-harness-instructional/dgemv-vectorized.cpp:20:1: note: ***** Analysis failed with vector mode VOID
